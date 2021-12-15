@@ -31,5 +31,5 @@ jobs:
         env:
           PERSONAL_TOKEN: ${{secrets.GH_PAT}}
           PUBLISH_BRANCH: master
-          PUBLISH_DIR: ./public
+          PUBLISH_DIR: ./docs
           SCRIPT_MODE: true
