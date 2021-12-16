@@ -1,60 +1,43 @@
-# This workflow will do a clean install of node dependencies, cache/restore them, build the source code and run tests across different versions of node
-# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
-
-name: deploy
+name: Deployment
 
 on:
   push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
-
+    branches:
+      - master
 jobs:
-  build:
+  deploy:
     runs-on: macos-latest
-    strategy:
-      matrix:
-        node-version: [ 14.x ]
     steps:
-      - name: Checkout main branch
-        uses: actions/checkout@v2
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
+      - name: Checkout source code
+        uses: actions/checkout@master
+
+      - name: Set up Node.js
+        uses: actions/setup-node@master
         with:
-          node-version: ${{ matrix.node-version }}
-      - name: npm cache
+          node-version: 14.x
+
+      - name: yarn cache
         uses: actions/cache@v2
         with:
           path: ~/.npm
           key: ${{ runner.os }}-build-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-build-${{ hashFiles('**/package-lock.json') }}
-      - name: npm install
-        run: npm install
-      - name: Build
-        run: |
-          rm -rf ./public
-          mkdir public
-          cp index.html ./public
-      - name: Checkout gh-pages branch
-        uses: actions/checkout@v2
-        with:
-          ref: "gh-pages"
-          clean: false
-      - name: Copy Directories
-        run: |
-          rm -rf ./build
-          cp -r ./public ./build
-      - name: Add & Commit
-        uses: EndBug/add-and-commit@v4.4.0
-        with:
-          add: 'build'
-          ref: "gh-pages"
+
+      - name: Install dependencies
+        run: yarn install
+
+      - name: Test unit
+        run: yarn test:unit
+
+      - name: Build page
+        run: yarn build
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: Push commit
-        uses: ad-m/github-push-action@master
+          NODE_ENV: production
+
+      - name: Deploy to gh-pages
+        uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: "gh-pages"
-          force: true
+          publish_dir: ./dist
+
