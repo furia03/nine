@@ -6,10 +6,6 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "predeploy": "vue-cli-service build",
-    "deploy": "gh-pages -d dist",
-    "clean": "gh-pages-clean",
-    "test:unit": "vue-cli-service test:unit"
   },
   "dependencies": {
     "core-js": "^3.6.5",
@@ -35,9 +31,4 @@
     "sass-loader": "^8.0.2",
     "vue-template-compiler": "^2.6.11"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/furia03/nine"
-  },
-  "homepage": "https://furia03.github.io/nine"
 }
