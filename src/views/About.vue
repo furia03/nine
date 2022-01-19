@@ -6,7 +6,7 @@
 <script>
 export default {
   name: "App",
-  metaInfo() {
+  /*metaInfo() {
     return {
       title: "furia03",
       titleTemplate: "about | %s",
@@ -54,6 +54,6 @@ export default {
         },
       ],
     };
-  },
+  },*/
 };
 </script>

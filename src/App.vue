@@ -10,7 +10,7 @@
 <script>
 export default {
   name: "App",
-  metaInfo() {
+  /*metaInfo() {
     return {
       title: "furia03",
       titleTemplate: "test | %s",
@@ -57,7 +57,7 @@ export default {
         },
       ],
     };
-  },
+  },*/
 };
 </script>
 <style lang="scss">
