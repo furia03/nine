@@ -33,17 +33,17 @@ export default {
         },
         {
           property: "og:title",
-          content: "furia03",
+          content: "about | furia03",
           vmid: "og:title",
         },
         {
           property: "og:description",
-          content: "",
+          content: "끼얔",
           vmid: "og:description",
         },
         {
           property: "og:image",
-          content: process.env.BASE_URL + "images/share.jpg",
+          content: process.env.BASE_URL + "img/android-chrome-192x192.png",
           vmid: "og:image",
         },
         {
