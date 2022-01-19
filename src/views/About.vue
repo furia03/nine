@@ -43,7 +43,8 @@ export default {
         },
         {
           property: "og:image",
-          content: process.env.BASE_URL + "img/android-chrome-192x192.png",
+          content:
+            process.env.BASE_URL + "img/icons/android-chrome-192x192.png",
           vmid: "og:image",
         },
         {
